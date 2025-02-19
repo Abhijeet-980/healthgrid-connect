@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -99,7 +98,6 @@ const Index = () => {
     },
   ];
 
-  // Animated counter hook
   const useCounter = (end: number, duration: number = 2000) => {
     const [count, setCount] = useState(0);
 
@@ -125,7 +123,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="relative h-screen flex items-center">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 z-0" />
         <div className="container mx-auto px-4 z-10">
@@ -157,7 +154,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-up">
@@ -169,15 +165,15 @@ const Index = () => {
               solutions for our patients.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up"
+                className="group bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up hover:-translate-y-1"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <feature.icon className="w-12 h-12 text-primary mb-6" />
-                <h3 className="font-montserrat text-xl font-bold text-gray-900 mb-4">
+                <feature.icon className="w-12 h-12 text-primary mb-6 transform transition-transform group-hover:scale-110" />
+                <h3 className="font-montserrat text-xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
                   {feature.title}
                 </h3>
                 <p className="font-inter text-gray-600">{feature.description}</p>
@@ -187,7 +183,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-up">
@@ -198,28 +193,32 @@ const Index = () => {
               Real experiences from our valued patients
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up"
+                className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up hover:-translate-y-1"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <div className="relative overflow-hidden rounded-full">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 object-cover transform transition-transform group-hover:scale-110"
+                    />
+                  </div>
                   <div className="ml-4">
-                    <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
+                    <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                      {testimonial.name}
+                    </h3>
                     <p className="text-gray-600 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 mb-4">{testimonial.content}</p>
                 <div className="flex text-yellow-400">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
+                    <Star key={i} className="w-5 h-5 fill-current transition-transform group-hover:scale-110" />
                   ))}
                 </div>
               </div>
@@ -228,7 +227,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Blog Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-up">
@@ -239,27 +237,32 @@ const Index = () => {
               Stay informed with our latest articles and updates
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {blogPosts.map((post, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up"
+                className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up hover:-translate-y-1"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
+                <div className="relative overflow-hidden aspect-[16/9]">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
                 <div className="p-6">
                   <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                  <h3 className="font-bold text-gray-900 mb-2">{post.title}</h3>
+                  <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
                   <p className="text-gray-600 mb-4">{post.excerpt}</p>
                   <Link
                     to="#"
-                    className="inline-flex items-center text-primary font-semibold hover:text-primary/80"
+                    className="inline-flex items-center text-primary font-semibold group-hover:text-primary/80 transition-colors"
                   >
-                    Read More <ChevronRight className="ml-1 w-4 h-4" />
+                    Read More{" "}
+                    <ChevronRight className="ml-1 w-4 h-4 transform transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>
@@ -268,20 +271,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Statistics Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {stats.map((stat, index) => {
               const count = useCounter(stat.value);
               return (
                 <div
                   key={index}
-                  className="text-center p-6 animate-fade-up"
+                  className="group text-center p-8 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 animate-fade-up hover:-translate-y-1"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <stat.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <div className="font-montserrat text-4xl font-bold text-gray-900 mb-2">
+                  <stat.icon className="w-12 h-12 text-primary mx-auto mb-4 transform transition-transform group-hover:scale-110" />
+                  <div className="font-montserrat text-4xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
                     {count.toLocaleString()}+
                   </div>
                   <p className="text-gray-600">{stat.label}</p>
@@ -292,7 +294,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-up">
@@ -307,12 +308,14 @@ const Index = () => {
             {faqs.map((faq, index) => (
               <details
                 key={index}
-                className="group bg-white rounded-xl mb-4 animate-fade-up"
+                className="group bg-white rounded-xl mb-4 animate-fade-up hover:shadow-md transition-all duration-300"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none">
-                  <h3 className="font-semibold text-gray-900">{faq.question}</h3>
-                  <ChevronDown className="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180" />
+                <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-primary">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown className="w-5 h-5 text-gray-500 transition-transform group-open:rotate-180 group-hover:text-primary" />
                 </summary>
                 <div className="px-6 pb-4">
                   <p className="text-gray-600">{faq.answer}</p>
